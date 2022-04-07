@@ -91,7 +91,9 @@ cd $RAW_DATA_DIR/hcc1395
 wget http://genomedata.org/pmbio-workshop/fastqs/all/Exome_Norm.tar
 wget http://genomedata.org/pmbio-workshop/fastqs/all/Exome_Tumor.tar
 wget http://genomedata.org/pmbio-workshop/fastqs/all/RNAseq_Tumor.tar
-tar -xvf Exome_Norm.tar Exome_Tumor.tar RNAseq_Tumor.tar
+tar -xvf Exome_Norm.tar 
+tar -xvf Exome_Tumor.tar 
+tar -xvf RNAseq_Tumor.tar
 rm -f Exome_Norm.tar Exome_Tumor.tar RNAseq_Tumor.tar
 ```
 
