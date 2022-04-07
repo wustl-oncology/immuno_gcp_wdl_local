@@ -117,7 +117,8 @@ Note that this YAML file has been set up to work with the HCC1395 raw data files
 
 Start an interactive docker session capable of running the "cloudize" scripts
 ```bash
-bsub -Is -q oncology-interactive -G $GROUP -a "docker(mgibio/cloudize-workflow:latest)" /bin/bash
+docker pull mgibio/cloudize-workflow:latest
+docker run -it mgibio/cloudize-workflow:latest /bin/bash
 ```
 
 Attempt to cloudize your workflow and inputs
