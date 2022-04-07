@@ -118,11 +118,12 @@ Note that this YAML file has been set up to work with the HCC1395 raw data files
 Start an interactive docker session capable of running the "cloudize" scripts
 ```bash
 docker pull mgibio/cloudize-workflow:latest
-docker run -it mgibio/cloudize-workflow:latest /bin/bash
+docker run -it -v /Users/mgriffit/Desktop/pipeline_test/:/Users/mgriffit/Desktop/pipeline_test/ mgibio/cloudize-workflow:latest /bin/bash
 ```
 
 Attempt to cloudize your workflow and inputs
 ```bash
+export WORKING_BASE=/Users/mgriffit/Desktop/pipeline_test/gcp_wdl_test/
 export WORKFLOW_DEFINITION=$WORKING_BASE/git/analysis-wdls/definitions/immuno.wdl
 export LOCAL_YAML=hcc1395_immuno_local-WDL.yaml
 export CLOUD_YAML=hcc1395_immuno_cloud-WDL.yaml
