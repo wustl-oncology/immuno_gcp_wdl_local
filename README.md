@@ -23,20 +23,27 @@ https://github.com/griffithlab/cloud-workflows/tree/main/manual-workflows
 ### The example data set and analysis to be performed
 To demonstrate an analysis on the Google cloud we will run the WASHU immunogenomics pipeline on a publicly available set of exome and bulk RNA-seq data generated for a tumor/normal cell line pair (HCC1395 and HCC1395/BL). The HCC1395 cell line is a well known breast cancer cell line that can be purchased and is commonly used for benchmarking cancer genomics analysis and methods development. The datasets we will use here are realistic deeply sequenced exome and RNA-seq data. The immunogenomics pipeline is a very elaborate end-to-end pipeline that starts with raw data and performs data QC, germline variant calling, somatic variant calling (multiple variant callers and variant types), HLA typing, RNA expression analysis and neoantigen identification.  
 
+### Setting up a Google Cloud account
+In order to do analysis on the Google Cloud, you will need an account. Ideally this will be an account linked to your institution/company. Before proceeding, you should set up this account, log into it and make sure you have access to billing information: https://console.cloud.google.com/.
+
+Some notes on account set up once your are logged in:
+- Create a new project. In this tutorial we use project name: 'test-immuno'. When using the Google Web Console, remember to select this project in the top left corner.
+- Create billing alerts! In the Google Cloud Web Console. Billing -> Budgets & alerts -> Create Budget. How you set up your alerts will depend on anticipate level use/expenditure. For example, you might set at $500 budget and then set up alerts to be sent at 50%, 100%, 200%, ..., X% of that budget.
+- Choose a name for the Google bucket that will be used for this tutorial. Note that you don't need to create it in the console because this will be handled automatically for you below.
+ 
 ### Interacting with Google buckets from your local system
-Note that you can use this docker image to access `gsutil` for exploration of your google storage: `docker(google/cloud-sdk)`
+Note that, in needed, you can use this docker image to access `gsutil` for exploration of your google storage: `docker(google/cloud-sdk)`. Or alternatively, you can install the Google Cloud SDK on your system.
 
 ## Step-by-step instructions
 
 ### Set some Google Cloud and other environment variables
 The following environment variables are used merely for convenience and should be customized to produce intuitive labeling for your own analysis:
 ```bash
-export GROUP=compute-oncology
-export PROJECT=griffith-lab
-export GCS_BUCKET_NAME=griffith-lab-test-immuno-pipeline
-export GCS_BUCKET_PATH=gs://griffith-lab-test-immuno-pipeline
-export WORKING_BASE=/storage1/fs1/mgriffit/Active/griffithlab/pipeline_test/gcp_wdl_test
-export RAW_DATA_DIR=/storage1/fs1/mgriffit/Active/griffithlab/pipeline_test/raw_data
+export PROJECT=test-immuno
+export GCS_BUCKET_NAME=test-immuno-pipeline
+export GCS_BUCKET_PATH=gs://test-immuno-pipeline
+export WORKING_BASE=~/Desktop/pipeline_test/gcp_wdl_test
+export RAW_DATA_DIR=~/Desktop/pipeline_test/raw_data
 ```
 
 ## Local setup
