@@ -1,4 +1,4 @@
-# Running the WASHU Immunogenomics Workflow on Google Cloud - compute1 version
+# Running the WASHU Immunogenomics Workflow on Google Cloud - local version
 
 ## Preamble
 This tutorial demonstrates how to run the WASHU immunogenomics pipeline (immuno.wdl) on Google Cloud.
@@ -8,15 +8,15 @@ and all the inputs will be staged to this cloud environment.  Next Cromwell will
 using the specified input and reference files, and finally the results will be pulled back to the local system
 and cloud resources will be cleaned up. 
 
-This version assumes that your are staging your input data files from the WASHU RIS storage1/compute1 cluster. 
-Some steps are run within docker containers on that cluster. It therefore requires that you have access to 
-storage1 disk and ability to launch jobs on compute1 using LSF (bsub).
+This version assumes that your are staging your input data files from your local system (e.g. a laptop, but could be any system really). 
+Some steps are run within docker containers. It therefore requires that you have the ability to run interative docker sessions on your system.
 
 ### Source of instructions
 This tutorial is a specific example of how to run a specific pipeline (immuno) on a specific example dataset (HCC1395 Tumor/normal cell line pair). The steps below are taken from the following link where you will find a  more generic set of documentation that explains in detail how to run any WDL pipeline on the Google Cloud using tools created to assist this process. 
 https://github.com/griffithlab/cloud-workflows/tree/main/manual-workflows
 
 ### Prerequisites
+- docker
 - google-cloud-sdk
 - git
 
