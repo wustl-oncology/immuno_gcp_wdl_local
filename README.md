@@ -123,12 +123,12 @@ docker run -it -v /Users/mgriffit/Desktop/pipeline_test/:/Users/mgriffit/Desktop
 
 Attempt to cloudize your workflow and inputs
 ```bash
-cd $WORKING_BASE/yamls
 export GCS_BUCKET_NAME=test-immuno-pipeline
 export WORKING_BASE=/Users/mgriffit/Desktop/pipeline_test/gcp_wdl_test
 export WORKFLOW_DEFINITION=$WORKING_BASE/git/analysis-wdls/definitions/immuno.wdl
 export LOCAL_YAML=hcc1395_immuno_local-WDL.yaml
 export CLOUD_YAML=hcc1395_immuno_cloud-WDL.yaml
+cd $WORKING_BASE/yamls
 python3 /opt/scripts/cloudize-workflow.py $GCS_BUCKET_NAME $WORKFLOW_DEFINITION $WORKING_BASE/yamls/$LOCAL_YAML --output=$WORKING_BASE/yamls/$CLOUD_YAML
 ```
 
