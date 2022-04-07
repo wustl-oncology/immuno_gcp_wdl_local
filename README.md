@@ -77,7 +77,7 @@ Run the following command and make note of the "Service Account" returned (e.g. 
 
 ```bash
 cd $WORKING_BASE/git/cloud-workflows/manual-workflows/
-bash resources.sh init-project --project griffith-lab --bucket griffith-lab-test-immuno-pipeline
+bash resources.sh init-project --project $PROJECT --bucket $GCS_BUCKET_NAME
 ```
 
 This step should have created two new configuration files in your current directory: `cromwell.conf` and `workflow_options.json`.
