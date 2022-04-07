@@ -108,7 +108,7 @@ cd yamls
 
 Setup yaml files for an example run.
 ```bash
-cp $WORKING_BASE/git/immuno_gcp_wdl_compute1/example_yamls/human_GRCh38_ens105/hcc1395_immuno_local-WDL.yaml $WORKING_BASE/yamls/
+cp $WORKING_BASE/git/immuno_gcp_wdl_local/example_yamls/human_GRCh38_ens105/hcc1395_immuno_local-WDL.yaml $WORKING_BASE/yamls/
 ```
 
 Note that this YAML file has been set up to work with the HCC1395 raw data files downloaded above. If you are modifying this tutorial to work with your own data, you will need to modify the beginning of the YAML that relates to input sequence files.  For both DNA and RNA files, both FASTQ and Unaligned BAM files are supported as input.  Similarly, you have have your data in one file (or one file pair) or you may have multiple data files that will be merged together. Depending on how your input data is organized the YAML entries will look slightly different.
