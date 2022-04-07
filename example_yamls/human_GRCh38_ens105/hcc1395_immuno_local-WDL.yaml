@@ -3,27 +3,27 @@
 # --------------- Tumor DNA input data files and meta-data --------------
 immuno.tumor_sequence:
 - sequence:
-    fastq1: "/storage1/fs1/mgriffit/Active/griffithlab/pipeline_test/raw_data/hcc1395/Exome_Tumor/Exome_Tumor_R1.fastq.gz"
-    fastq2: "/storage1/fs1/mgriffit/Active/griffithlab/pipeline_test/raw_data/hcc1395/Exome_Tumor/Exome_Tumor_R2.fastq.gz"
+    fastq1: "/Users/mgriffit/Desktop/pipeline_test/raw_data/hcc1395/Exome_Tumor/Exome_Tumor_R1.fastq.gz"
+    fastq2: "/Users/mgriffit/Desktop/pipeline_test/raw_data/hcc1395/Exome_Tumor/Exome_Tumor_R2.fastq.gz"
   readgroup: "@RG\tID:1\tPU:C1TD1ACXX\tSM:HCC1395_TUMOR_DNA\tLB:HCC1395_TUMOR_DNA_LIB1\tPL:Illumina\tCN:WUGSC"
 immuno.tumor_sample_name: HCC1395_TUMOR_DNA
 
 # --------------- Normal DNA input data files and meta-data --------------
 immuno.normal_sequence:
 - sequence:
-    fastq1: "/storage1/fs1/mgriffit/Active/griffithlab/pipeline_test/raw_data/hcc1395/Exome_Norm/Exome_Norm_R1.fastq.gz"
-    fastq2: "/storage1/fs1/mgriffit/Active/griffithlab/pipeline_test/raw_data/hcc1395/Exome_Norm/Exome_Norm_R2.fastq.gz"
+    fastq1: "/Users/mgriffit/Desktop/pipeline_test/raw_data/hcc1395/Exome_Norm/Exome_Norm_R1.fastq.gz"
+    fastq2: "/Users/mgriffit/Desktop/pipeline_test/raw_data/hcc1395/Exome_Norm/Exome_Norm_R2.fastq.gz"
   readgroup: "@RG\tID:2\tPU:C1TD1ACXX\tSM:HCC1395_NORMAL_DNA\tLB:HCC1395_NORMAL_DNA_LIB1\tPL:Illumina\tCN:WUGSC"
 immuno.normal_sample_name: HCC1395_NORMAL_DNA
 
 # ------------- Tumor RNA sample input data files and meta-data -----------------
 immuno.rna_sequence:
   - sequence:
-      fastq1: "/storage1/fs1/mgriffit/Active/griffithlab/pipeline_test/raw_data/hcc1395/RNAseq_Tumor/RNAseq_Tumor_Lane1_R1.fastq.gz"
-      fastq2: "/storage1/fs1/mgriffit/Active/griffithlab/pipeline_test/raw_data/hcc1395/RNAseq_Tumor/RNAseq_Tumor_Lane1_R2.fastq.gz" 
+      fastq1: "/Users/mgriffit/Desktop/pipeline_test/raw_data/hcc1395/RNAseq_Tumor/RNAseq_Tumor_Lane1_R1.fastq.gz"
+      fastq2: "/Users/mgriffit/Desktop/pipeline_test/raw_data/hcc1395/RNAseq_Tumor/RNAseq_Tumor_Lane1_R2.fastq.gz" 
   - sequence:
-      fastq1: "/storage1/fs1/mgriffit/Active/griffithlab/pipeline_test/raw_data/hcc1395/RNAseq_Tumor/RNAseq_Tumor_Lane2_R1.fastq.gz"
-      fastq2: "/storage1/fs1/mgriffit/Active/griffithlab/pipeline_test/raw_data/hcc1395/RNAseq_Tumor/RNAseq_Tumor_Lane2_R2.fastq.gz"
+      fastq1: "/Users/mgriffit/Desktop/pipeline_test/raw_data/hcc1395/RNAseq_Tumor/RNAseq_Tumor_Lane2_R1.fastq.gz"
+      fastq2: "/Users/mgriffit/Desktop/pipeline_test/raw_data/hcc1395/RNAseq_Tumor/RNAseq_Tumor_Lane2_R2.fastq.gz"
 immuno.read_group_fields:
 - - PU:H3MYFBBXX.4
   - SM:HCC1395_TUMOR_RNA
