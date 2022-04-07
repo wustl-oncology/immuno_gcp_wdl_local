@@ -60,7 +60,7 @@ The following repositories contain: this tutorial (immuno_gcp_wdl), the WDL work
 ```bash
 mkdir git
 cd git
-git clone git@github.com:griffithlab/immuno_gcp_wdl_compute1.git
+git clone git@github.com:griffithlab/immuno_gcp_wdl_local.git
 git clone git@github.com:griffithlab/analysis-wdls.git
 git clone git@github.com:griffithlab/cloud-workflows.git
 ```
