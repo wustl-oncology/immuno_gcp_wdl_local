@@ -115,20 +115,16 @@ Note that this YAML file has been set up to work with the HCC1395 raw data files
 
 ### Stage input files to cloud bucket
 
-Start an interactive docker session capable of running the "cloudize" scripts
+Start an interactive docker session capable of running the "cloudize" scripts. Note that the following docker command uses `--env` commands to pass some convenient environment variables in that were exported above. The first `-v` option is used to allow access to where the data is stored. The second `-v` is used to expose the location of the Google Cloud Credential files.  You will need to update this to reflect your username. The `-it` option is used to make the session interactive and we specify to drop into a `/bin/bash` session. `mgibio/cloudize-workflow:latest` is the docker image we will use.
+
 ```bash
 docker pull mgibio/cloudize-workflow:latest
-docker run -it --env PROJECT --env GCS_BUCKET_NAME --env WORKING_BASE --env WORKFLOW_DEFINITION --env LOCAL_YAML --env CLOUD_YAML -v /Users/mgriffit/Desktop/pipeline_test/:/Users/mgriffit/Desktop/pipeline_test/ mgibio/cloudize-workflow:latest /bin/bash
+docker run -it --env PROJECT --env GCS_BUCKET_NAME --env WORKING_BASE --env WORKFLOW_DEFINITION --env LOCAL_YAML --env CLOUD_YAML -v /Users/mgriffit/Desktop/pipeline_test/:/Users/mgriffit/Desktop/pipeline_test/ -v /Users/mgriffit/.config/gcloud:/root/.config/gcloud mgibio/cloudize-workflow:latest /bin/bash
+gcloud auth login
 ```
 
 Attempt to cloudize your workflow and inputs
 ```bash
-export PROJECT=test-immuno
-export GCS_BUCKET_NAME=test-immuno-pipeline
-export WORKING_BASE=/Users/mgriffit/Desktop/pipeline_test/gcp_wdl_test
-export WORKFLOW_DEFINITION=$WORKING_BASE/git/analysis-wdls/definitions/immuno.wdl
-export LOCAL_YAML=hcc1395_immuno_local-WDL.yaml
-export CLOUD_YAML=hcc1395_immuno_cloud-WDL.yaml
 cd $WORKING_BASE/yamls
 python3 /opt/scripts/cloudize-workflow.py $GCS_BUCKET_NAME $WORKFLOW_DEFINITION $WORKING_BASE/yamls/$LOCAL_YAML --output=$WORKING_BASE/yamls/$CLOUD_YAML
 ```
