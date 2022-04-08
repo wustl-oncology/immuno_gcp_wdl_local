@@ -137,10 +137,10 @@ If you get an error during this step, a common cause is that there is some disco
 Note that Cromwell produces a large quantity of database logging. To ensure we have enough space for a least a few runs and to localize intermediate and final results files from the workflow (which include numerous large BAMs) we will specify some extra disk space with `--boot-disk-size=250GB` (default would be 10GB). When not testing, this can probably be safely reduced to 20-40GB.
 ```bash
 export INSTANCE_NAME=mg-immuno-test
-export SERVER_ACCOUNT=cromwell-server@test-immuno.iam.gserviceaccount.com
+export SERVICE_ACCOUNT=cromwell-server@test-immuno.iam.gserviceaccount.com
 
 cd $WORKING_BASE/git/cloud-workflows/manual-workflows/
-bash start.sh $INSTANCE_NAME --server-account $SERVER_ACCOUNT --boot-disk-size=250GB
+bash start.sh $INSTANCE_NAME --server-account $SERVICE_ACCOUNT --boot-disk-size=250GB
 ```
 
 ### Log into the VM and check status 
