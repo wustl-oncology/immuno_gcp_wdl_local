@@ -120,7 +120,6 @@ Start an interactive docker session capable of running the "cloudize" scripts. N
 ```bash
 docker pull mgibio/cloudize-workflow:latest
 docker run -it --env PROJECT --env GCS_BUCKET_NAME --env WORKING_BASE --env WORKFLOW_DEFINITION --env LOCAL_YAML --env CLOUD_YAML -v /Users/mgriffit/Desktop/pipeline_test/:/Users/mgriffit/Desktop/pipeline_test/ -v /Users/mgriffit/.config/gcloud:/root/.config/gcloud mgibio/cloudize-workflow:latest /bin/bash
-gcloud auth login
 ```
 
 Attempt to cloudize your workflow and inputs
