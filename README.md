@@ -156,10 +156,10 @@ If you get an error during this step, a common cause is that there is some disco
 
 ### Start a Google VM that will run Cromwell and orchestrate completion of the workflow
 
-Note that Cromwell produces a large quantity of database logging. To ensure we have enough space for a least a few runs and to localize intermediate and final results files from the workflow (which include numerous large BAMs) we will specify some extra disk space with `--boot-disk-size=250GB` (default would be 10GB). When not testing, this can probably be safely reduced to 20-40GB.
+Note that Cromwell produces a large quantity of database logging. To ensure we have enough space for a least a few runs and to localize intermediate and final results files from the workflow (which include numerous large BAMs) we will specify some extra disk space with `--boot-disk-size=250GB` (default would be 10GB). When not testing, this can probably be safely reduced to 20-40GB. Note that this argument must be listed last after the required arguments for the `start.sh` script.
 ```bash
 cd $WORKING_BASE/git/cloud-workflows/manual-workflows/
-bash start.sh $GCS_INSTANCE_NAME --server-account $GCS_SERVICE_ACCOUNT --boot-disk-size=250GB
+bash start.sh $GCS_INSTANCE_NAME --server-account $GCS_SERVICE_ACCOUNT --project $GCS_PROJECT --boot-disk-size=250GB
 
 #Now exit the interactive docker session
 exit
