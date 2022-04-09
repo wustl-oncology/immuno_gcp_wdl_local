@@ -22,8 +22,8 @@ After completing the workflow, ALL resources used on the cloud can be destroyed.
 
 A brief note on command line sessions. Almost everything below will occur at the command line. It is very easy to get confused about the kind of sessions used. There are three types that will be used:
 1. A terminal session on your local system (e.g. using the Terminal App on a Mac laptop)
-2. Within session (1) you may launch a docker interative session to use tools we have created for setting up the workflow
-3. Within session (1) you may login (via SSH) to the Google Virtual Machine where Cromwell is running.
+2. Within session (1) you may launch a docker interative session (via `docker run -it`) to use tools we have created for setting up the workflow
+3. Within session (1) you may login (via `gcloud compute ssh`) to the Google Virtual Machine where Cromwell is running.
 
 ### Source of instructions
 This tutorial is a specific example of how to run a specific pipeline (immuno) on a specific example dataset (HCC1395 Tumor/normal cell line pair). The steps below are taken from the following link where you will find a more generic set of documentation that explains in detail how to run any WDL pipeline on the Google Cloud using tools created to assist this process. 
