@@ -67,7 +67,7 @@ export LOCAL_YAML=hcc1395_immuno_local-WDL.yaml
 export CLOUD_YAML=hcc1395_immuno_cloud-WDL.yaml
 ```
 
-Note that $GCS_SERVICE_ACCOUNT should contain the value in $GCS_PROJECT as in the example above.
+Note that $GCS_SERVICE_ACCOUNT should contain the value in $GCS_PROJECT as in the example above. Also note that Google Bucket names must be **globally** unique. So, you will want to change $GCS_BUCKET_NAME and $GCS_BUCKET_PATH above to something specific to you. 
 
 ## Local setup
 
