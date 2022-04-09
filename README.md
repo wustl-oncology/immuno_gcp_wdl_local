@@ -153,7 +153,13 @@ export SERVICE_ACCOUNT=cromwell-server@test-immuno.iam.gserviceaccount.com
 
 cd $WORKING_BASE/git/cloud-workflows/manual-workflows/
 bash start.sh $INSTANCE_NAME --server-account $SERVICE_ACCOUNT --boot-disk-size=250GB
+
+#Now exit the interactive docker session
+exit
+
 ```
+
+
 
 ### Log into the VM and check status 
 
