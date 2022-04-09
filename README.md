@@ -1,18 +1,27 @@
-# Running the WASHU Immunogenomics Workflow on Google Cloud - local version
+# Running the WASHU Immunogenomics Workflow on Google Cloud - public version
 
 ## Preamble
 This tutorial demonstrates how to run the WASHU immunogenomics pipeline (immuno.wdl) on Google Cloud.
-This will be done by first setting up the workflow definitions, input data and reference files and a 
-YAML config file on a user's local system. The user will also set up a Google Cloud environment
-and all the inputs will be staged to this cloud environment.  Next Cromwell will be used to execute the pipeline
-using the specified input and reference files, and finally the results will be pulled back to the local system
-and cloud resources will be cleaned up. 
 
-This version assumes that your are staging your input data files from your local system (e.g. a laptop, but could be any system really). 
+The same principles described in this tutorial should work for any of our collection of WDL files found here: https://github.com/griffithlab/analysis-wdls.
+
+This workflow run will be accomplished by first setting up workflow definitions, input data and 
+reference files and a YAML config file on a user's local system. The user will also set up a Google Cloud 
+environment and all the inputs will be staged to this cloud environment. Next Cromwell will be used to execute the pipeline using the specified input and reference files, and finally the results will be pulled back to the local system and cloud resources will be cleaned up. 
+
 Some steps are run within docker containers. It therefore requires that you have the ability to run interative docker sessions on your system.
 
+You will interact with the Google Cloud in several ways:
+1. From your local system using command line tools, including `gcloud` and `gsutil`.
+2. We will create a Google Virtual Machine (VM) and start a Cromwell service on it. You will then login to this VM and perform some commands and monitoring of workflow progress there. Cromwell on this VM will orchestrate creation and use of many additional worker VMs that complete all the compute tasks of the workflow.
+3. The Google Cloud Console in your web browser may be used to visualize/monitor usage of cloud resources. In the Console you will see most relevant resources in the "Cloud Storage" and "Compute Engine" sections.
+
+This version assumes that your are staging your input data files from your local system (e.g. a laptop, but could be any system really). All input files will be staged to a Google Storage Bucket. During the workflow, all results files will be also be stored in this Bucket. At the end of the tutorial the final results will be copied back to your local system.
+
+After completing the workflow, ALL resources used on the cloud can be destroyed. One possible exception to this may occur if you need custom reference files that you wish to persist for many analyses. However, for this tutorial reference files will be accessed from a separate public bucket that we have created to support this workflow.
+
 ### Source of instructions
-This tutorial is a specific example of how to run a specific pipeline (immuno) on a specific example dataset (HCC1395 Tumor/normal cell line pair). The steps below are taken from the following link where you will find a  more generic set of documentation that explains in detail how to run any WDL pipeline on the Google Cloud using tools created to assist this process. 
+This tutorial is a specific example of how to run a specific pipeline (immuno) on a specific example dataset (HCC1395 Tumor/normal cell line pair). The steps below are taken from the following link where you will find a more generic set of documentation that explains in detail how to run any WDL pipeline on the Google Cloud using tools created to assist this process. 
 https://github.com/griffithlab/cloud-workflows/tree/main/manual-workflows
 
 ### Prerequisites
@@ -28,11 +37,11 @@ In order to do analysis on the Google Cloud, you will need an account. Ideally t
 
 Some notes on account set up once your are logged in:
 - Create a new project. In this tutorial we use project name: 'test-immuno'. When using the Google Web Console, remember to select this project in the top left corner.
-- Create billing alerts! In the Google Cloud Web Console. Billing -> Budgets & alerts -> Create Budget. How you set up your alerts will depend on anticipate level use/expenditure. For example, you might set at $500 budget and then set up alerts to be sent at 50%, 100%, 200%, ..., X% of that budget.
-- Choose a name for the Google bucket that will be used for this tutorial. Note that you don't need to create it in the console because this will be handled automatically for you below.
+- Create billing alerts! In the Google Cloud Web Console, select: Billing -> Budgets & alerts -> Create Budget. How you set up your alerts will depend on your anticipated level of use/expenditure. For example, you might set at $500 budget and then set up alerts to be sent at 50%, 100%, 200%, ..., X% of that budget.
+- Choose a name for the Google bucket that will be used for this tutorial. Note that you don't need to create it in the console because this will be handled automatically for you below. We will use the bucket name 'test-immuno-pipeline' below.
  
 ### Interacting with Google buckets from your local system
-Note that, in needed, you can use this docker image to access `gsutil` for exploration of your google storage: `docker(google/cloud-sdk)`. Or alternatively, you can install the Google Cloud SDK on your system.
+Note that, if needed, you can use the following docker image to access `gsutil` for exploration of your google storage: `docker(google/cloud-sdk)`. Or alternatively, you can install the Google Cloud SDK on your system. This latter approach is assumed by the following instructions.
 
 ## Step-by-step instructions
 
