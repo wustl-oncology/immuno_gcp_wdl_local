@@ -53,6 +53,7 @@ Start by opening a Terminal session on your local system
 
 ### Set some Google Cloud and other environment variables
 The following environment variables are used merely for convenience and should be customized to produce intuitive labeling for your own analysis:
+
 ```bash
 export GCS_PROJECT=test-immuno
 export GCS_SERVICE_ACCOUNT=cromwell-server@test-immuno.iam.gserviceaccount.com
@@ -61,6 +62,9 @@ export GCS_BUCKET_PATH=gs://test-immuno-pipeline
 export GCS_INSTANCE_NAME=mg-immuno-test
 export WORKING_BASE=~/Desktop/pipeline_test/gcp_wdl_test
 export RAW_DATA_DIR=~/Desktop/pipeline_test/raw_data
+export WORKFLOW_DEFINITION=$WORKING_BASE/git/analysis-wdls/definitions/immuno.wdl
+export LOCAL_YAML=hcc1395_immuno_local-WDL.yaml
+export CLOUD_YAML=hcc1395_immuno_cloud-WDL.yaml
 ```
 
 Note that $GCS_SERVICE_ACCOUNT should contain the value in $GCS_PROJECT as in the example above.
