@@ -297,7 +297,13 @@ exit
 
 ### Once the workflow is done and results retrieved, destroy the Cromwell VM on GCP to avoid wasting resources
 
+Use the following commmand to destroy the Cromwell VM. 
+
 ```bash
 gcloud compute instances delete $GCS_INSTANCE_NAME
 ```
+
+You can empty the cloud bucket either in the Web Console or using commands like `gsutil rm -r $GCS_BUCKET_PATH/folder-name`.
+
+Finally, you should perform a survey of Cloud Storage and Compute Engine sections in the Google Cloud Web Console to make sure everything has been cleaned up successfully..
 
