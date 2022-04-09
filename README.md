@@ -34,7 +34,7 @@ https://github.com/griffithlab/cloud-workflows/tree/main/manual-workflows
 - google-cloud-sdk
 - git
 
-### The example data set and analysis to be performed
+### Example data set and analysis to be performed
 To demonstrate an analysis on the Google cloud we will run the WASHU immunogenomics pipeline on a publicly available set of exome and bulk RNA-seq data generated for a tumor/normal cell line pair (HCC1395 and HCC1395/BL). The HCC1395 cell line is a well known breast cancer cell line that can be purchased and is commonly used for benchmarking cancer genomics analysis and methods development. The datasets we will use here are realistic deeply sequenced exome and RNA-seq data. The immunogenomics pipeline is a very elaborate end-to-end pipeline that starts with raw data and performs data QC, germline variant calling, somatic variant calling (multiple variant callers and variant types), HLA typing, RNA expression analysis and neoantigen identification.  
 
 ### Setting up a Google Cloud account
@@ -108,7 +108,7 @@ bash resources.sh init-project --project $GCS_PROJECT --bucket $GCS_BUCKET_NAME
 
 This step should have created two new configuration files in your current directory: `cromwell.conf` and `workflow_options.json`.
 
-### Setup input data and reference files
+### Download input data files
 
 Download RAW data for hcc1395
 ```bash
@@ -123,7 +123,7 @@ tar -xvf RNAseq_Tumor.tar
 rm -f Exome_Norm.tar Exome_Tumor.tar RNAseq_Tumor.tar
 ```
 
-### Gather input data and reference files to your local system
+### Obtain an example configuration (YAML) file on local system
 Create a directory for YAML files and create one for the desired pipeline that points to the location of input files on your local system
 
 ```bash
@@ -137,9 +137,27 @@ Setup yaml files for an example run.
 cp $WORKING_BASE/git/immuno_gcp_wdl_local/example_yamls/human_GRCh38_ens105/hcc1395_immuno_local-WDL.yaml $WORKING_BASE/yamls/
 ```
 
-Note that this YAML file has been set up to work with the HCC1395 raw data files downloaded above. If you are modifying this tutorial to work with your own data, you will need to modify the beginning of the YAML that relates to input sequence files.  For both DNA and RNA files, both FASTQ and Unaligned BAM files are supported as input.  Similarly, you have have your data in one file (or one file pair) or you may have multiple data files that will be merged together. Depending on how your input data is organized the YAML entries will look slightly different.
+Note that this YAML file has been set up to work with the HCC1395 raw data files downloaded above. You will need to update the PATHs to the FASTQ files to match the locations you downloaded them to above.
 
-### Stage input files to cloud bucket
+Open the YAML file with an editor and correct all 8 lines that contain paths to input data FASTQ files.
+
+If you are modifying this tutorial to work with your own data, you will need to modify the YAML lines that relate to input sequence files.  For both DNA and RNA files, both FASTQ and Unaligned BAM files are supported as input.  Similarly, you have have your data in one file (or one file pair) or you may have multiple data files that will be merged together. Depending on how your input data is organized the YAML entries will look slightly different.
+
+### Create a copy of reference and annotation files in your Google Bucket
+In the following step, we will make a copy of a bundle of reference files from one Public ("Requestor Pays") Google Bucket into our own Google Bucket as follows:
+
+```bash
+gsutil -u $GCS_PROJECT ls gs://griffith-lab-workflow-inputs/
+gsutil -u $GCS_PROJECT cp -r gs://griffith-lab-workflow-inputs/human_GRCh38_ens105 $GCS_BUCKET_PATH/human_GRCh38_ens105
+gsutil ls $GCS_BUCKET_PATH/human_GRCh38_ens105
+
+```
+
+Note that in the commands above, we must use the `-u` option to specify a project for billing to access a public Google Bucket configured as "Requestor Pays".
+
+### Stage input data files to cloud bucket
+
+The reference and annotation files were already in a Google Bucket and we simply had to copy them from a public Bucket to our own. However, the input FASTQ data files are still on our local system, so we still need to upload them and update our YAML file to point to their new locations on the cloud.
 
 Start an interactive docker session capable of running the "cloudize" scripts. Note that the following docker command uses `--env` commands to pass some convenient environment variables in that were exported above. The first `-v` option is used to allow access to where the data is stored. The second `-v` is used to expose the location of the Google Cloud Credential files.  You will need to update this to reflect your username. The `-it` option is used to make the session interactive and we specify to drop into a `/bin/bash` session. `mgibio/cloudize-workflow:latest` is the docker image we will use.
 
