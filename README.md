@@ -20,6 +20,11 @@ This version assumes that your are staging your input data files from your local
 
 After completing the workflow, ALL resources used on the cloud can be destroyed. One possible exception to this may occur if you need custom reference files that you wish to persist for many analyses. However, for this tutorial reference files will be accessed from a separate public bucket that we have created to support this workflow.
 
+A brief note on command line sessions. Almost everything below will occur at the command line. It is very easy to get confused about the kind of sessions used. There are three types that will be used:
+1. A terminal session on your local system (e.g. using the Terminal App on a Mac laptop)
+2. Within session (1) you may launch a docker interative session to use tools we have created for setting up the workflow
+3. Within session (1) you may login (via SSH) to the Google Virtual Machine where Cromwell is running.
+
 ### Source of instructions
 This tutorial is a specific example of how to run a specific pipeline (immuno) on a specific example dataset (HCC1395 Tumor/normal cell line pair). The steps below are taken from the following link where you will find a more generic set of documentation that explains in detail how to run any WDL pipeline on the Google Cloud using tools created to assist this process. 
 https://github.com/griffithlab/cloud-workflows/tree/main/manual-workflows
@@ -44,6 +49,7 @@ Some notes on account set up once your are logged in:
 Note that, if needed, you can use the following docker image to access `gsutil` for exploration of your google storage: `docker(google/cloud-sdk)`. Or alternatively, you can install the Google Cloud SDK on your system. This latter approach is assumed by the following instructions.
 
 ## Step-by-step instructions
+Start by opening a Terminal session on your local system
 
 ### Set some Google Cloud and other environment variables
 The following environment variables are used merely for convenience and should be customized to produce intuitive labeling for your own analysis:
