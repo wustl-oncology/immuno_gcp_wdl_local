@@ -94,7 +94,7 @@ gcloud config list
 
 The `gcloud config list` command can be used to remind yourself how you are currently authenticated to use Google Cloud Services. This can be helpful because on your host machine, you will be authenticated using your personal account. However, on the Google VM where the workflow will be orchestrated by Cromwell, you will be authenticated using a "service" account. 
 
-### Set up cloud account and bucket
+### Set up cloud service account, firewall settings, and storage bucket
 Run the following command and make note of the "Service Account" returned (e.g. "cromwell-server@test-immuno.iam.gserviceaccount.com"). Make sure this matches the value in $GCS_SERVICE_ACCOUNT (e.g. `echo $GCS_SERVICE_ACCOUNT`).
 
 ```bash
