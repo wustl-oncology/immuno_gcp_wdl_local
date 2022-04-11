@@ -46,7 +46,11 @@ Some notes on account set up once your are logged in:
 - Choose a name for the Google bucket that will be used for this tutorial. Note that you don't need to create it in the console because this will be handled automatically for you below. We will use the bucket name 'test-immuno-pipeline' below.
  
 Some notes on quotas:
-- If you have not been using your account for high performance computing, it is likely that by default you have quotas in place that will cause the very large immuno.wdl workflow to fail. For example, you may not be able to use enough CPUs, IP addresses and disk space at once to get this workflow to run. If you see errors that mention quotas, or sound like fundamental network failures, check your quotas in the Google Cloud Console (IAM & Admin -> Quotas) and work with your Google account contact to increase your quotas. If your institution has already been using Google Cloud in any serious way, this is less likely to be a problem.  
+- If you have not been using your account for high performance computing, it is likely that by default you have quotas in place that will cause the very large immuno.wdl workflow to fail. For example, you may not be able to use enough CPUs, IP addresses and disk space at once to get this workflow to run. If you see errors that mention quotas, or sound like fundamental network failures, check your quotas in the Google Cloud Console (IAM & Admin -> Quotas) and work with your Google account contact to increase your quotas. If your institution has already been using Google Cloud in any serious way, this is less likely to be a problem. 
+
+Example quotas you might need to request:
+- `cpus` -> `us-central1` -> `100`
+- `preemptible_cpus` -> `us-central1` -> `100`
 
 ### Interacting with Google buckets from your local system
 Note that, if needed, you can use the following docker image to access `gsutil` for exploration of your google storage: `docker(google/cloud-sdk)`. Or alternatively, you can install the Google Cloud SDK on your system. This latter approach is assumed by the following instructions.
