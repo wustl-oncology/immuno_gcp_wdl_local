@@ -51,6 +51,8 @@ Some notes on quotas:
 Example quotas you might need to request:
 - `cpus` -> `us-central1` -> `100`
 - `preemptible_cpus` -> `us-central1` -> `100`
+- `In-use IP addresses` -> `us-central1` -> `25`
+- `Persistent Disk SSD (GB)` -> `us-central1` -> `10 TB`
 
 ### Interacting with Google buckets from your local system
 Note that, if needed, you can use the following docker image to access `gsutil` for exploration of your google storage: `docker(google/cloud-sdk)`. Or alternatively, you can install the Google Cloud SDK on your system. This latter approach is assumed by the following instructions.
