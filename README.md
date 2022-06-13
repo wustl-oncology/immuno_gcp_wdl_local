@@ -65,7 +65,7 @@ The following environment variables are used merely for convenience and should b
 
 ```bash
 export GCS_PROJECT=test-immuno
-export GCS_SERVICE_ACCOUNT=cromwell-server@test-immuno.iam.gserviceaccount.com
+export GCS_SERVICE_ACCOUNT=cromwell-server@$GCS_PROJECT.iam.gserviceaccount.com
 export GCS_BUCKET_NAME=test-immuno-pipeline
 export GCS_BUCKET_PATH=gs://test-immuno-pipeline
 export GCS_INSTANCE_NAME=mg-immuno-test
@@ -76,7 +76,7 @@ export LOCAL_YAML=hcc1395_immuno_local-WDL.yaml
 export CLOUD_YAML=hcc1395_immuno_cloud-WDL.yaml
 ```
 
-Note that $GCS_SERVICE_ACCOUNT should contain the value in $GCS_PROJECT as in the example above. Also note that Google Bucket names must be **globally** unique. So, you will want to change $GCS_BUCKET_NAME and $GCS_BUCKET_PATH above to something specific to you. 
+NOTE: You will need to manually create the Google billing project in the console before proceeding
 
 ## Local setup
 
